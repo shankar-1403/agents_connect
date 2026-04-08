@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
-import { motion, useInView, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { motion,useInView, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import {
   TrendingDown, Clock, Lock, HeadphonesIcon, AlertTriangle,
   UserCheck, FileCheck, ShoppingBag, Wallet, ChevronRight,
@@ -7,9 +7,8 @@ import {
   IndianRupee, Users, Building2, Briefcase, Home as HomeIcon,
   Rocket, Mail, Phone, MapPin, Send,
 } from 'lucide-react';
-import logo from '../src/assets/logo.png';
+import logo from '../src/assets/logo.webp';
 import heroIllustration from '../src/assets/hero_2.png';
-const _MOTION = motion;
 
 /* ─── Data ─── */
 const navLinks = [
@@ -190,10 +189,10 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background font-body overflow-x-hidden">
       {/* ── Navbar ── */}
-      <nav className={`fixed inset-x-0 top-0 z-50 bg-white py-5 transition-all duration-500 ${scrolled ? 'shadow-lg backdrop-blur' : ''}`}>
+      <nav className={`fixed inset-x-0 top-0 z-50 bg-white py-2 transition-all duration-500 ${scrolled ? 'shadow-lg backdrop-blur' : ''}`}>
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 md:px-8">
           <a href="#home" className="flex items-center gap-3 group">
-            <img src={logo} alt="AgentsConnect" className="h-10 w-auto transition-transform group-hover:scale-105" width={40} height={40} />
+            <img src={logo} alt="AgentsConnect" className="h-20 w-auto transition-transform group-hover:scale-105" width={40} height={40} />
           </a>
           <div className="hidden items-center gap-1 md:flex">
             {navLinks.map((link) => (
@@ -707,7 +706,7 @@ const Index = () => {
         
         <div className="relative mx-auto grid max-w-7xl gap-12 px-5 md:grid-cols-3 md:px-8">
           <div>
-            <img src={logo} alt="AgentsConnect" className="h-10 w-auto rounded-xl bg-card p-1.5" loading="lazy" width={40} height={40} />
+            <img src={logo} alt="AgentsConnect" className="h-20 w-auto rounded-xl" loading="lazy" width={40} height={40} />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-primary-foreground/40">
               India's trusted platform helping insurance agents increase earnings through better partnerships and dedicated support.
             </p>
