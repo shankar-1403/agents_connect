@@ -451,14 +451,13 @@ const Index = () => {
                 {/* Right — Benefits List */}
                 <motion.div variants={staggerFast} className="lg:col-span-3 grid gap-4 sm:grid-cols-2">
                   {benefits.map((item, idx) => {
-                    const isWide = idx === 0 || idx === 5;
                     return (
                       <motion.div
                         key={item.text}
                         variants={fadeUp}
-                        className={`group relative flex items-start gap-5 overflow-hidden rounded-2xl border border-border bg-card/80 p-6 shadow-card backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/20 hover:shadow-elevated ${isWide ? 'sm:col-span-2' : ''}`}
+                        className={`group relative flex items-start gap-5 overflow-hidden rounded-2xl border border-border bg-card/80 p-6 shadow-card backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/20 hover:shadow-elevated`}
                       >
-                        <span className="absolute top-4 right-5 font-heading text-4xl font-black text-foreground/[0.03] select-none">{String(idx + 1).padStart(2, '0')}</span>
+                        <span className="absolute top-0 -right-0 font-heading text-4xl font-black text-foreground/[0.03] select-none">{String(idx + 1).padStart(2, '0')}</span>
 
                         <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-primary-foreground group-hover:scale-110">
                           <item.Icon className="h-5 w-5" />
