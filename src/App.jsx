@@ -693,7 +693,7 @@ const Index = () => {
                       { label: 'Phone', value: '+91 77387 01551', Icon: Phone },
                       { label: 'Location', value: '169, 1st Floor Evershine Mall, Chincholi Bunder, Malad West Mumbai 400064', Icon: MapPin },
                     ].map((item) => (
-                      <div key={item.label} className="group flex items-start gap-4 rounded-2xl border border-border bg-card p-6 shadow-card transition-all duration-300 hover:shadow-elevated hover:border-primary/15 hover:-translate-y-1">
+                      <a href={item.label === "Email" ? `mailto:${item.value}` : item.label === "Phone" ? `tel:${item.value}` : null} key={item.label} className="group flex items-start gap-4 rounded-2xl border border-border bg-card p-6 shadow-card transition-all duration-300 hover:shadow-elevated hover:border-primary/15 hover:-translate-y-1">
                         <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-accent text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-primary-foreground group-hover:scale-110">
                           <item.Icon className="h-5 w-5" />
                         </div>
@@ -701,7 +701,7 @@ const Index = () => {
                           <p className="font-heading text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground">{item.label}</p>
                           <p className="mt-1.5 font-medium text-foreground">{item.value}</p>
                         </div>
-                      </div>
+                      </a>
                     ))}
                     
                     {/* Trust indicators */}
