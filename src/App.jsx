@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
-import { motion,useInView, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { motion, useInView, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import {
   TrendingDown, Clock, Lock, HeadphonesIcon, AlertTriangle,
   UserCheck, FileCheck, ShoppingBag, Wallet, ChevronRight,
@@ -13,17 +13,16 @@ import heroIllustration from '../src/assets/hero_2.png';
 /* ─── Data ─── */
 const navLinks = [
   { label: 'Home', href: '#home' },
-  { label: 'Benefits', href: '#benefits' },
   { label: 'How it Works', href: '#how-it-works' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Benefits', href: '#benefits' },
 ];
 
 const problems = [
-  { title: 'Low Commission', text: 'Many agents receive limited payouts despite high effort and dedication to clients.', Icon: TrendingDown, color: 'from-red-500/20 to-orange-500/20', accent: 'text-red-500' },
-  { title: 'Delayed Payments', text: 'Long waiting periods for commission payouts disrupt cash flow and planning.', Icon: Clock, color: 'from-amber-500/20 to-yellow-500/20', accent: 'text-amber-500' },
-  { title: 'Limited Products', text: 'Restricted product options reduce earning potential and client satisfaction.', Icon: Lock, color: 'from-purple-500/20 to-indigo-500/20', accent: 'text-purple-500' },
-  { title: 'No Backend Support', text: 'Lack of professional assistance impacts conversions and agent confidence.', Icon: HeadphonesIcon, color: 'from-pink-500/20 to-rose-500/20', accent: 'text-pink-500' },
-  { title: 'Slow Growth', text: 'Hard to scale income without the right ecosystem and partnerships.', Icon: AlertTriangle, color: 'from-slate-500/20 to-gray-500/20', accent: 'text-slate-500' },
+  { title: 'Low Commission', text: 'Many agents receive limited payouts despite high effort and dedication to clients.', Icon: TrendingDown, color: 'from-[#2fbfcb]/20 to-[#213875]/20', accent: 'text-[#ffe07d]' },
+  { title: 'Delayed Payments', text: 'Long waiting periods for commission payouts disrupt cash flow and planning.', Icon: Clock, color: 'from-[#2fbfcb]/20 to-[#213875]/20', accent: 'text-[#ffe07d]' },
+  { title: 'Limited Products', text: 'Restricted product options reduce earning potential and client satisfaction.', Icon: Lock, color: 'from-[#2fbfcb]/20 to-[#213875]/20', accent: 'text-[#ffe07d]' },
+  { title: 'No Backend Support', text: 'Lack of professional assistance impacts conversions and agent confidence.', Icon: HeadphonesIcon, color: 'from-[#2fbfcb]/20 to-[#213875]/20', accent: 'text-[#ffe07d]' },
+  { title: 'Slow Growth', text: 'Hard to scale income without the right ecosystem and partnerships.', Icon: AlertTriangle, color: 'from-[#2fbfcb]/20 to-[#213875]/20', accent: 'text-[#ffe07d]' },
 ];
 
 const features = [
@@ -47,11 +46,11 @@ const benefits = [
 
 const whoCanJoin = [
   { role: 'Insurance Advisors', Icon: Building2, desc: 'Licensed insurance professionals looking for better payouts', gradient: 'from-primary to-brand-blue-light' },
-  { role: 'Financial Consultants', Icon: Briefcase, desc: 'Wealth & tax planners seeking additional income streams', gradient: 'from-brand-gold to-brand-gold-light' },
-  { role: 'Loan Agents', Icon: Building2, desc: 'Banking & lending professionals expanding their portfolio', gradient: 'from-brand-emerald to-primary' },
-  { role: 'Real Estate Consultants', Icon: HomeIcon, desc: 'Property & housing agents diversifying revenue', gradient: 'from-purple-500 to-indigo-500' },
-  { role: 'Freelancers', Icon: Sparkles, desc: 'Independent sales professionals seeking flexibility', gradient: 'from-pink-500 to-rose-500' },
-  { role: 'Anyone Ambitious', Icon: Rocket, desc: 'Anyone passionate about insurance sales and growth', gradient: 'from-primary to-brand-gold' },
+  { role: 'Financial Consultants', Icon: Briefcase, desc: 'Wealth & tax planners seeking additional income streams', gradient: 'from-primary to-brand-blue-light' },
+  { role: 'Loan Agents', Icon: Building2, desc: 'Banking & lending professionals expanding their portfolio', gradient: 'from-primary to-brand-blue-light' },
+  { role: 'Real Estate Consultants', Icon: HomeIcon, desc: 'Property & housing agents diversifying revenue', gradient: 'from-primary to-brand-blue-light' },
+  { role: 'Freelancers', Icon: Sparkles, desc: 'Independent sales professionals seeking flexibility', gradient: 'from-primary to-brand-blue-light' },
+  { role: 'Anyone Ambitious', Icon: Rocket, desc: 'Anyone passionate about insurance sales and growth', gradient: 'from-primary to-brand-blue-light' },
 ];
 
 const testimonials = [
@@ -189,10 +188,10 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background font-body overflow-x-hidden">
       {/* ── Navbar ── */}
-      <nav className={`fixed inset-x-0 top-0 z-50 bg-white py-2 transition-all duration-500 ${scrolled ? 'shadow-lg backdrop-blur' : ''}`}>
+      <nav className={`fixed inset-x-0 top-0 z-50 bg-white py-3 transition-all duration-500 ${scrolled ? 'shadow-lg backdrop-blur' : ''}`}>
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 md:px-8">
           <a href="#home" className="flex items-center gap-3 group">
-            <img src={logo} alt="AgentsConnect" className="h-20 w-auto transition-transform group-hover:scale-105" width={40} height={40} />
+            <img src={logo} alt="AgentsConnect" className="h-12 w-auto transition-transform group-hover:scale-105" width={40} height={40} />
           </a>
           <div className="hidden items-center gap-1 md:flex">
             {navLinks.map((link) => (
@@ -200,7 +199,7 @@ const Index = () => {
                 {link.label}
               </a>
             ))}
-            <a href="#contact" className="ml-4 rounded-full bg-gradient-warm px-7 py-2.5 text-sm font-bold text-primary-foreground shadow-lg transition-all hover:scale-105 hover:shadow-elevated">
+            <a href="#contact" className="ml-4 rounded-full bg-gradient-to-br from-[#2fbfcb] via-blue-700 to-[#213875] px-7 py-2.5 text-sm font-bold text-primary-foreground shadow-lg transition-all hover:scale-105 hover:shadow-elevated">
               Join Now <ArrowRight className="inline h-4 w-4 ml-1" />
             </a>
           </div>
@@ -219,7 +218,7 @@ const Index = () => {
                 {navLinks.map((link) => (
                   <a key={link.label} href={link.href} onClick={closeMobile} className="rounded-lg px-4 py-3 text-lg font-medium text-foreground transition-colors hover:bg-accent">{link.label}</a>
                 ))}
-                <a href="#contact" onClick={closeMobile} className="mt-3 rounded-full bg-gradient-warm px-6 py-3 text-center font-bold text-primary-foreground">Join Now →</a>
+                <a href="#contact" onClick={closeMobile} className="mt-3 rounded-full bg-gradient-to-br from-[#2fbfcb] via-blue-700 to-[#213875] px-6 py-3 text-center font-bold text-primary-foreground">Join Now →</a>
               </div>
             </motion.div>
           )}
@@ -242,25 +241,25 @@ const Index = () => {
               </motion.span>
               <h1 className="mt-8 font-heading text-4xl font-extrabold leading-[1.1] tracking-tight md:text-5xl lg:text-6xl xl:text-7xl">
                 Connect. Earn.{' '}<br className="hidden sm:block" />
-                Grow with{' '}<span className="bg-gradient-to-r from-blue-500 via-blue-700 to-yellow-600 bg-clip-text text-transparent">AgentsConnect</span>
+                Grow with{' '}<span className="bg-gradient-to-r from-[#2fbfcb] via-blue-700 to-[#213875] bg-clip-text text-transparent">AgentsConnect</span>
               </h1>
               <p className="mt-7 max-w-lg text-lg leading-relaxed text-muted-foreground md:text-xl">
                 India's trusted platform helping insurance agents increase earnings through better payouts, reliable partnerships, and strong backend support.
               </p>
               <div className="mt-10 flex flex-wrap gap-4">
-                <a href="#contact" className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-gradient-warm px-8 py-4 font-heading text-base font-bold text-primary-foreground shadow-lg transition-all hover:scale-105 hover:shadow-elevated animate-pulse-glow">
+                <a href="#contact" className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-gradient-to-br from-[#2fbdcb] to-[#213875] px-8 py-4 font-heading text-base font-bold text-primary-foreground shadow-lg transition-all hover:scale-105 hover:shadow-elevated animate-pulse-glow">
                   <span className="relative z-10">Join as an Agent</span>
                   <ArrowRight className="relative z-10 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary-foreground/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary-foreground/10 to-[#213875] translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
                 </a>
-                <a href="#benefits" className="rounded-full border-2 border-border bg-card/80 px-8 py-4 font-heading text-base font-bold text-foreground shadow-card backdrop-blur-sm transition-all hover:border-primary/30 hover:shadow-elevated">
+                <a href="#benefits" className="rounded-full border-2 border-border bg-[#ffe07d] px-8 py-4 font-heading text-base font-bold text-foreground shadow-card backdrop-blur-sm transition-all hover:border-primary/30 hover:shadow-elevated">
                   Explore Benefits
                 </a>
               </div>
               <div className="mt-12 flex items-center gap-6 text-muted-foreground">
                 <div className="flex -space-x-2">
                   {['R', 'P', 'A', 'S'].map((l, i) => (
-                    <div key={i} className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-white bg-gradient-to-r from-blue-500 to-blue-800 text-xs font-bold text-white">{l}</div>
+                    <div key={i} className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-white bg-gradient-to-r from-[#2fbfcb] to-blue-800 text-xs font-bold text-white">{l}</div>
                   ))}
                 </div>
                 <p className="text-sm"><span className="font-bold text-foreground">500+</span> agents already growing</p>
@@ -277,7 +276,7 @@ const Index = () => {
         {/* ── Stats Bar ── */}
         <section className="relative -mt-2 z-10">
           <div className="mx-auto max-w-6xl px-5 md:px-8">
-            <AnimatedSection className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-navy via-primary to-brand-navy p-10 shadow-elevated md:p-14">
+            <AnimatedSection className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#213875] via-primary to-[#213875] p-10 shadow-elevated md:p-14">
               <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(255,255,255,0.12)_1px,transparent_1px)] [background-size:18px_18px] opacity-30" />
               <div className="absolute -right-20 -top-20 h-60 w-60 rounded-full bg-brand-gold/15 blur-3xl" />
               <div className="absolute -left-20 -bottom-20 h-60 w-60 rounded-full bg-primary-foreground/5 blur-3xl" />
@@ -303,18 +302,18 @@ const Index = () => {
                     <motion.div
                       key={p.title}
                       variants={fadeUp}
-                      className={`group relative overflow-hidden rounded-3xl border border-destructive/10 bg-card p-8 shadow-card transition-all duration-500 hover:-translate-y-2 hover:shadow-elevated hover:border-destructive/20 ${isLarge ? 'md:col-span-6' : 'md:col-span-4'}`}
+                      className={`group relative overflow-hidden rounded-3xl border border-[#213875]/10 bg-card p-8 shadow-card transition-all duration-500 hover:-translate-y-2 hover:shadow-elevated hover:border-[#213875]/20 ${isLarge ? 'md:col-span-6' : 'md:col-span-4'}`}
                     >
                       <div className={`absolute -right-10 -top-10 h-40 w-40 rounded-full bg-gradient-to-br ${p.color} opacity-0 blur-2xl transition-all duration-700 group-hover:opacity-100 group-hover:scale-150`} />
-                      <span className="absolute right-6 top-4 font-heading text-7xl font-black text-destructive/[0.04] transition-all duration-500 group-hover:text-destructive/[0.08] group-hover:scale-110">
+                      <span className="absolute right-6 top-4 font-heading text-7xl font-black text-[#213875]/[0.04] transition-all duration-500 group-hover:text-[#213875]/[0.08] group-hover:scale-110">
                         {String(idx + 1).padStart(2, '0')}
                       </span>
-                      <div className={`relative mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-destructive/8 ${p.accent} transition-all duration-300 group-hover:bg-destructive/12 group-hover:scale-110 group-hover:rotate-[-4deg]`}>
+                      <div className={`relative mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-[#213875]/8 ${p.accent} transition-all duration-300 group-hover:bg-[#213875]/12 group-hover:scale-110 group-hover:rotate-[-4deg] border-2 border-[#ffe07d]`}>
                         <p.Icon className="h-6 w-6" />
                       </div>
                       <h3 className="relative font-heading text-xl font-bold text-foreground">{p.title}</h3>
                       <p className="relative mt-3 text-sm leading-relaxed text-muted-foreground max-w-xs">{p.text}</p>
-                      <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-destructive/40 to-destructive/10 transition-all duration-500 group-hover:w-full rounded-full" />
+                      <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-[#2fbfcb]/40 to-[#213875]/10 transition-all duration-500 group-hover:w-full rounded-full" />
                     </motion.div>
                   );
                 })}
@@ -331,7 +330,7 @@ const Index = () => {
 
         {/* ── Features / Solution ── */}
         <section className="relative overflow-hidden py-24 md:py-36">
-          <div className="absolute inset-0 bg-gradient-to-br from-brand-navy via-primary to-brand-navy" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#213875] via-primary to-[#213875]" />
           <FloatingOrb className="h-[600px] w-[600px] bg-brand-gold/10 -right-40 top-20 animate-blob" />
           <FloatingOrb className="h-[400px] w-[400px] bg-brand-blue-light/10 -left-20 bottom-0 animate-blob-delay" />
           <div className="relative mx-auto max-w-7xl px-5 md:px-8">
@@ -376,7 +375,7 @@ const Index = () => {
                 {/* Animated connector */}
                 <div className="absolute top-[5rem] left-[14%] right-[14%] hidden h-[3px] lg:block overflow-hidden rounded-full">
                   <div className="h-full w-full bg-gradient-to-r from-primary/10 via-primary/25 to-primary/10" />
-                  <motion.div className="absolute inset-0 bg-gradient-to-r from-transparent via-brand-gold/60 to-transparent" animate={{ x: ['-100%', '100%'] }} transition={{ duration: 3, repeat: Infinity, ease: 'linear' }} />
+                  <motion.div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#ffe07d]/90 to-transparent" animate={{ x: ['-100%', '100%'] }} transition={{ duration: 3, repeat: Infinity, ease: 'linear' }} />
                 </div>
                 <motion.div variants={stagger} className="relative grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
                   {steps.map((step, idx) => (
@@ -388,7 +387,7 @@ const Index = () => {
                             {/* Pulse ring */}
                             <div className="absolute inset-0 rounded-[1.25rem] bg-primary/20 blur-xl scale-[2] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                             <div className="absolute -inset-2 rounded-[1.5rem] border-2 border-dashed border-primary/15 transition-all duration-700 group-hover:border-primary/30 group-hover:rotate-[30deg]" />
-                            <div className="relative flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-[1.25rem] bg-gradient-to-r from-blue-500 to-blue-800 text-primary-foreground shadow-xl shadow-primary/30 transition-all duration-500 group-hover:scale-110 group-hover:shadow-[0_14px_30px_rgba(31,162,255,0.45)]">
+                            <div className="relative flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-[1.25rem] bg-gradient-to-r from-[#2fbfcb] to-blue-800 text-primary-foreground shadow-xl shadow-primary/30 transition-all duration-500 group-hover:scale-110 group-hover:shadow-[0_14px_30px_rgba(31,162,255,0.45)]">
                               <step.Icon className="h-7 w-7" />
                             </div>
                           </div>
@@ -423,7 +422,7 @@ const Index = () => {
               <div className="grid gap-10 lg:grid-cols-5 lg:gap-14 items-start">
                 {/* Left — Feature Spotlight Card */}
                 <motion.div variants={fadeUp} className="lg:col-span-2 relative">
-                  <div className="relative rounded-[2rem] bg-gradient-to-br from-brand-navy via-primary to-brand-navy p-8 md:p-10 text-primary-foreground overflow-hidden">
+                  <div className="relative rounded-[2rem] bg-gradient-to-br from-[#213875] via-primary to-[#213875] p-8 md:p-10 text-primary-foreground overflow-hidden">
                     <div className="absolute -top-10 -right-10 h-40 w-40 rounded-full bg-primary-foreground/[0.06] blur-sm" />
                     <div className="absolute -bottom-8 -left-8 h-32 w-32 rounded-full bg-primary-foreground/[0.04]" />
                     <div className="relative z-10">
@@ -572,7 +571,7 @@ const Index = () => {
                       <button
                         key={idx}
                         onClick={() => setActiveTestimonial(idx)}
-                        className={`rounded-full transition-all duration-500 ${activeTestimonial === idx ? 'h-3 w-10 bg-gradient-to-r from-blue-500 to-blue-800 shadow-[0_10px_25px_rgba(31,162,255,0.45)]' : 'h-3 w-3 bg-border hover:bg-muted-foreground'}`}
+                        className={`rounded-full transition-all duration-500 ${activeTestimonial === idx ? 'h-3 w-10 bg-gradient-to-r from-[#2fbfcb] to-blue-800 shadow-[0_10px_25px_rgba(31,162,255,0.45)]' : 'h-3 w-3 bg-border hover:bg-muted-foreground'}`}
                         aria-label={`Show testimonial ${idx + 1}`}
                       />
                     ))}
@@ -585,11 +584,11 @@ const Index = () => {
 
         {/* ── CTA ── */}
         <section className="relative overflow-hidden py-24 md:py-36">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary via-brand-blue to-brand-navy" />
-          <FloatingOrb className="h-[600px] w-[600px] bg-brand-gold/15 left-1/4 top-0 animate-blob" />
-          <FloatingOrb className="h-[400px] w-[400px] bg-primary-foreground/5 right-0 bottom-0 animate-blob-delay" />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary via-brand-blue to-[#213875]" />
+          {/* <FloatingOrb className="h-[600px] w-[600px] bg-brand-gold/15 left-1/4 top-0 animate-blob" /> */}
+          {/* <FloatingOrb className="h-[400px] w-[400px] bg-primary-foreground/5 right-0 bottom-0 animate-blob-delay" /> */}
           {/* Grid pattern */}
-          <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+          {/* <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '40px 40px' }} /> */}
           
           <div className="relative mx-auto max-w-4xl px-5 text-center md:px-8">
             <AnimatedSection>
@@ -598,10 +597,10 @@ const Index = () => {
                   <Rocket className="h-3.5 w-3.5" />
                   Get Started Today
                 </span>
-                <h2 className="mt-8 font-heading text-3xl font-extrabold text-primary-foreground md:text-5xl lg:text-6xl leading-tight">
-                  Start Growing Your<br className="hidden sm:block" /> Insurance Business
+                <h2 className="mt-8 font-heading text-3xl font-extrabold text-primary-foreground md:text-5xl lg:text-6xl leading-tight text-shadow-xl">
+                  Start Growing Your<br className="hidden sm:block" /> <span className='text-[#ffe07d]'>Insurance Business</span>
                 </h2>
-                <p className="mx-auto mt-6 max-w-xl text-lg text-primary-foreground/60 leading-relaxed">
+                <p className="mx-auto mt-6 max-w-xl text-lg text-white leading-relaxed">
                   Join India's fastest growing insurance agent network and transform your career.
                 </p>
                 <div className="mt-10 flex flex-col items-center gap-5 sm:flex-row sm:justify-center">
@@ -682,9 +681,7 @@ const Index = () => {
                         rows={3}
                         className="w-full resize-none rounded-xl border border-slate-300 bg-white px-5 py-4 text-foreground transition-all placeholder:text-muted-foreground/60 hover:border-primary/30 focus:border-primary focus:outline-none focus:ring-4 focus:ring-blue-200/60"
                       />
-                      <button
-                        type="button"
-                        className="group flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-warm px-6 py-4 font-heading text-base font-bold text-primary-foreground shadow-lg transition-all hover:scale-[1.02] hover:shadow-elevated"
+                      <button type="button" className="group flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-primary to-brand-blue-light px-6 py-4 font-heading text-base font-bold text-primary-foreground shadow-lg transition-all hover:scale-[1.02] hover:shadow-elevated"
                       >
                         <Send className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                         Submit Application
@@ -699,14 +696,14 @@ const Index = () => {
       </main>
 
       {/* ── Footer ── */}
-      <footer className="relative overflow-hidden border-t border-primary-foreground/5 bg-brand-navy py-16">
+      <footer className="relative overflow-hidden border-t border-primary-foreground/5 bg-[#213875] py-16">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(31,162,255,0.14),transparent_45%),radial-gradient(circle_at_80%_30%,rgba(30,78,140,0.12),transparent_45%),radial-gradient(circle_at_50%_80%,rgba(201,162,39,0.10),transparent_45%)] opacity-10" />
         <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
         
         <div className="relative mx-auto grid max-w-7xl gap-12 px-5 md:grid-cols-3 md:px-8">
-          <div>
-            <img src={logo} alt="AgentsConnect" className="h-20 w-auto rounded-xl" loading="lazy" width={40} height={40} />
-            <p className="mt-5 max-w-xs text-sm leading-relaxed text-primary-foreground/40">
+          <div className='bg-white p-4 rounded-2xl shadow-lg border-4 border-[#a07432]'>
+            <img src={logo} alt="AgentsConnect" className="h-12 w-auto rounded-xl" loading="lazy" width={40} height={40} />
+            <p className="mt-3 max-w-xs text-sm leading-relaxed">
               India's trusted platform helping insurance agents increase earnings through better partnerships and dedicated support.
             </p>
           </div>
@@ -714,20 +711,20 @@ const Index = () => {
             <h4 className="font-heading text-sm font-bold uppercase tracking-[0.15em] text-primary-foreground/70">Contact Info</h4>
             <div className="mt-5 space-y-3">
               <a href="mailto:parvez@agentsconnect.in" className="flex items-center gap-3 text-sm text-primary-foreground/40 transition-colors hover:text-primary-foreground/70">
-                <Mail className="h-4 w-4" /> parvez@agentsconnect.in
+                <div className='p-2 bg-[#a07432] rounded-full'><Mail className="text-white" size={18} /></div> parvez@agentsconnect.in
               </a>
               <a href="tel:+917738701551" className="flex items-center gap-3 text-sm text-primary-foreground/40 transition-colors hover:text-primary-foreground/70">
-                <Phone className="h-4 w-4" /> +91 77387 01551
+                <div className='p-2 bg-[#a07432] rounded-full'><Phone className="text-white" size={18} /></div> +91 77387 01551
               </a>
               <p className="flex items-center gap-3 text-sm text-primary-foreground/40">
-                <MapPin className="h-4 w-4" /> 169, 1st Floor Evershine Mall, Chincholi Bunder, Malad West Mumbai 400064
+                <div className='p-2 bg-[#a07432] rounded-full'><MapPin className="text-white" size={18} /></div> 169, 1st Floor Evershine Mall, Chincholi Bunder, Malad West Mumbai 400064
               </p>
             </div>
           </div>
           <div>
             <h4 className="font-heading text-sm font-bold uppercase tracking-[0.15em] text-primary-foreground/70">Quick Links</h4>
             <div className="mt-5 flex flex-col gap-3">
-              {['Home', 'Benefits', 'How it Works', 'Contact', 'Privacy Policy'].map((item) => (
+              {['Home', 'How it Works', 'Benefits', 'Contact'].map((item) => (
                 <a key={item} href={`#${item.toLowerCase().replace(/ /g, '-')}`} className="group flex items-center gap-2 text-sm text-primary-foreground/40 transition-colors hover:text-primary-foreground/70">
                   <ChevronRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
                   {item}
