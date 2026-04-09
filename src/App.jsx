@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
 import { motion, useInView, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { push, ref } from 'firebase/database';
 import {
   TrendingDown, Clock, Lock, HeadphonesIcon, AlertTriangle,
   UserCheck, FileCheck, ShoppingBag, Wallet, ChevronRight,
@@ -9,6 +10,7 @@ import {
 } from 'lucide-react';
 import logo from '../src/assets/logo.webp';
 import heroIllustration from '../src/assets/hero_2.png';
+import { db } from './lib/firebase';
 
 /* ─── Data ─── */
 const navLinks = [
@@ -72,6 +74,13 @@ const stats = [
   { value: '50+', label: 'Insurance Partners', Icon: Building2 },
   { value: '98%', label: 'Satisfaction Rate', Icon: Star },
 ];
+
+const initialFormData = {
+  name: '',
+  phone: '',
+  city: '',
+  message: '',
+};
 
 /* ─── Variants ─── */
 const fadeUp = {
@@ -166,6 +175,8 @@ const Index = () => {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [formData, setFormData] = useState(initialFormData);
+  const [submitState, setSubmitState] = useState({ status: 'idle', message: '' });
 
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
@@ -184,6 +195,55 @@ const Index = () => {
   }, []);
 
   const closeMobile = useCallback(() => setMobileMenuOpen(false), []);
+  const handleInputChange = useCallback((event) => {
+    const { name, value } = event.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  }, []);
+
+  const handleSubmit = useCallback(async (event) => {
+    event.preventDefault();
+
+    const payload = {
+      name: formData.name.trim(),
+      phone: formData.phone.trim(),
+      city: formData.city.trim(),
+      message: formData.message.trim(),
+    };
+
+    if (!payload.name || !payload.phone || !payload.city) {
+      setSubmitState({ status: 'error', message: 'Please fill in name, phone and city.' });
+      return;
+    }
+
+    const missingFirebase =
+      !import.meta.env.VITE_FIREBASE_API_KEY?.trim() ||
+      !import.meta.env.VITE_FIREBASE_PROJECT_ID?.trim() ||
+      !import.meta.env.VITE_FIREBASE_DATABASE_URL?.trim();
+    if (missingFirebase) {
+      setSubmitState({
+        status: 'error',
+        message:
+          'Firebase is not configured. Add VITE_FIREBASE_* keys to .env, rebuild, then redeploy.',
+      });
+      return;
+    }
+
+    setSubmitState({ status: 'loading', message: '' });
+
+    try {
+      await push(ref(db, 'agentLeads'), {
+        ...payload,
+        source: 'website',
+        createdAt: new Date().toISOString(),
+      });
+
+      setFormData(initialFormData);
+      setSubmitState({ status: 'success', message: 'Application submitted successfully.' });
+    } catch (error) {
+      setSubmitState({ status: 'error', message: 'Submission failed. Please try again.' });
+      console.error('Lead submission failed:', error);
+    }
+  }, [formData]);
 
   return (
     <div className="min-h-screen bg-background font-body overflow-x-hidden">
@@ -218,7 +278,7 @@ const Index = () => {
                 {navLinks.map((link) => (
                   <a key={link.label} href={link.href} onClick={closeMobile} className="rounded-lg px-4 py-3 text-lg font-medium text-foreground transition-colors hover:bg-accent">{link.label}</a>
                 ))}
-                <a href="#contact" onClick={closeMobile} className="mt-3 rounded-full bg-gradient-to-br from-[#2fbfcb] via-blue-700 to-[#213875] px-6 py-3 text-center font-bold text-primary-foreground">Join Now →</a>
+                <a href="#contact" onClick={closeMobile} className="mt-3 rounded-full bg-gradient-to-br from-[#2fbfcb] via-blue-700 to-[#213875] px-6 py-3 text-center font-bold text-primary-foreground">Join Now <ArrowRight className="inline h-3 w-3 ml-1" /></a>
               </div>
             </motion.div>
           )}
@@ -620,76 +680,93 @@ const Index = () => {
         </section>
 
         {/* ── Contact ── */}
-        <section id="contact" className="relative py-24 md:py-36 overflow-hidden">
+        <section className="relative py-24 md:py-36 overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(31,162,255,0.14),transparent_45%),radial-gradient(circle_at_80%_30%,rgba(30,78,140,0.12),transparent_45%),radial-gradient(circle_at_50%_80%,rgba(201,162,39,0.10),transparent_45%)] opacity-30" />
           <div className="relative mx-auto max-w-7xl px-5 md:px-8">
             <AnimatedSection>
-              <SectionHeading badge="Contact" title="Get in Touch" subtext="Have questions? We'd love to hear from you and help you get started." />
-              <motion.div variants={stagger} className="mx-auto grid max-w-5xl gap-10 md:grid-cols-5">
-                <motion.div variants={slideInLeft} className="space-y-5 md:col-span-2">
-                  {[
-                    { label: 'Email', value: 'parvez@agentsconnect.in', Icon: Mail },
-                    { label: 'Phone', value: '+91 77387 01551', Icon: Phone },
-                    { label: 'Location', value: '169, 1st Floor Evershine Mall, Chincholi Bunder, Malad West Mumbai 400064', Icon: MapPin },
-                  ].map((item) => (
-                    <div key={item.label} className="group flex items-start gap-4 rounded-2xl border border-border bg-card p-6 shadow-card transition-all duration-300 hover:shadow-elevated hover:border-primary/15 hover:-translate-y-1">
-                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-accent text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-primary-foreground group-hover:scale-110">
-                        <item.Icon className="h-5 w-5" />
-                      </div>
-                      <div>
-                        <p className="font-heading text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground">{item.label}</p>
-                        <p className="mt-1.5 font-medium text-foreground">{item.value}</p>
-                      </div>
-                    </div>
-                  ))}
-                  
-                  {/* Trust indicators */}
-                  <div className="rounded-2xl border border-brand-emerald/20 bg-brand-emerald/5 p-5">
-                    <div className="flex items-center gap-3">
-                      <Shield className="h-5 w-5 text-brand-emerald" />
-                      <div>
-                        <p className="text-sm font-bold text-foreground">100% Secure</p>
-                        <p className="text-xs text-muted-foreground">Your data is safe with us</p>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-                
-                <motion.div variants={fadeUp} className="md:col-span-3">
-                  <form className="relative overflow-hidden rounded-3xl border border-border bg-card p-8 shadow-elevated md:p-10">
-                    <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-primary/5 blur-3xl" />
-                    <h3 className="relative font-heading text-xl font-bold text-foreground">Send us a message</h3>
-                    <p className="relative mt-2 text-sm text-muted-foreground">Fill in your details and we'll get back to you shortly.</p>
-                    
-                    <div className="relative mt-8 space-y-5">
-                      {[
-                        { type: 'text', placeholder: 'Your Full Name', name: 'name', icon: UserCheck },
-                        { type: 'tel', placeholder: 'Phone Number', name: 'phone', icon: Phone },
-                        { type: 'text', placeholder: 'Your City', name: 'city', icon: MapPin },
-                      ].map((field) => (
-                        <div key={field.name} className="group relative">
-                          <field.icon className="absolute left-4 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-muted-foreground/50 transition-colors group-focus-within:text-primary" />
-                          <input
-                            type={field.type}
-                            placeholder={field.placeholder}
-                            className="w-full rounded-xl border border-slate-300 bg-white py-4 pl-12 pr-5 text-foreground transition-all placeholder:text-muted-foreground/60 hover:border-primary/30 focus:border-primary focus:outline-none focus:ring-4 focus:ring-blue-200/60"
-                          />
+              <div variants={stagger}>
+                <SectionHeading badge="Contact" title="Get in Touch" subtext="Have questions? We'd love to hear from you and help you get started." />
+                <div id="contact" className="mx-auto grid max-w-5xl gap-10 md:grid-cols-5 pt-10">
+                  <motion.div variants={slideInLeft} className="space-y-5 md:col-span-2">
+                    {[
+                      { label: 'Email', value: 'parvez@agentsconnect.in', Icon: Mail },
+                      { label: 'Phone', value: '+91 77387 01551', Icon: Phone },
+                      { label: 'Location', value: '169, 1st Floor Evershine Mall, Chincholi Bunder, Malad West Mumbai 400064', Icon: MapPin },
+                    ].map((item) => (
+                      <div key={item.label} className="group flex items-start gap-4 rounded-2xl border border-border bg-card p-6 shadow-card transition-all duration-300 hover:shadow-elevated hover:border-primary/15 hover:-translate-y-1">
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-accent text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-primary-foreground group-hover:scale-110">
+                          <item.Icon className="h-5 w-5" />
                         </div>
-                      ))}
-                      <textarea
-                        placeholder="Tell us about your experience (optional)"
-                        rows={3}
-                        className="w-full resize-none rounded-xl border border-slate-300 bg-white px-5 py-4 text-foreground transition-all placeholder:text-muted-foreground/60 hover:border-primary/30 focus:border-primary focus:outline-none focus:ring-4 focus:ring-blue-200/60"
-                      />
-                      <button type="button" className="group flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-primary to-brand-blue-light px-6 py-4 font-heading text-base font-bold text-primary-foreground shadow-lg transition-all hover:scale-[1.02] hover:shadow-elevated"
-                      >
-                        <Send className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                        Submit Application
-                      </button>
+                        <div>
+                          <p className="font-heading text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground">{item.label}</p>
+                          <p className="mt-1.5 font-medium text-foreground">{item.value}</p>
+                        </div>
+                      </div>
+                    ))}
+                    
+                    {/* Trust indicators */}
+                    <div className="rounded-2xl border border-brand-emerald/20 bg-brand-emerald/5 p-5">
+                      <div className="flex items-center gap-3">
+                        <Shield className="h-5 w-5 text-brand-emerald" />
+                        <div>
+                          <p className="text-sm font-bold text-foreground">100% Secure</p>
+                          <p className="text-xs text-muted-foreground">Your data is safe with us</p>
+                        </div>
+                      </div>
                     </div>
-                  </form>
-                </motion.div>
-              </motion.div>
+                  </motion.div>
+                  
+                  <motion.div variants={fadeUp} className="md:col-span-3">
+                    <form onSubmit={handleSubmit} className="relative overflow-hidden rounded-3xl border border-border bg-card p-8 shadow-elevated md:p-10">
+                      <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-primary/5 blur-3xl" />
+                      <h3 className="relative font-heading text-xl font-bold text-foreground">Send us a message</h3>
+                      <p className="relative mt-2 text-sm text-muted-foreground">Fill in your details and we'll get back to you shortly.</p>
+                      
+                      <div className="relative mt-8 space-y-5">
+                        {[
+                          { type: 'text', placeholder: 'Your Full Name', name: 'name', icon: UserCheck },
+                          { type: 'tel', placeholder: 'Phone Number', name: 'phone', icon: Phone },
+                          { type: 'text', placeholder: 'Your City', name: 'city', icon: MapPin },
+                        ].map((field) => (
+                          <div key={field.name} className="group relative">
+                            <field.icon className="absolute left-4 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-muted-foreground/50 transition-colors group-focus-within:text-primary" />
+                            <input
+                              type={field.type}
+                              name={field.name}
+                              placeholder={field.placeholder}
+                              value={formData[field.name]}
+                              onChange={handleInputChange}
+                              required
+                              className="w-full rounded-xl border border-slate-300 bg-white py-4 pl-12 pr-5 text-foreground transition-all placeholder:text-muted-foreground/60 hover:border-primary/30 focus:border-primary focus:outline-none focus:ring-4 focus:ring-blue-200/60"
+                            />
+                          </div>
+                        ))}
+                        <textarea
+                          name="message"
+                          placeholder="Tell us about your experience (optional)"
+                          rows={3}
+                          value={formData.message}
+                          onChange={handleInputChange}
+                          className="w-full resize-none rounded-xl border border-slate-300 bg-white px-5 py-4 text-foreground transition-all placeholder:text-muted-foreground/60 hover:border-primary/30 focus:border-primary focus:outline-none focus:ring-4 focus:ring-blue-200/60"
+                        />
+                        {submitState.message ? (
+                          <p className={`text-sm font-medium ${submitState.status === 'success' ? 'text-brand-emerald' : 'text-red-600'}`}>
+                            {submitState.message}
+                          </p>
+                        ) : null}
+                        <button
+                          type="submit"
+                          disabled={submitState.status === 'loading'}
+                          className="group flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-primary to-brand-blue-light px-6 py-4 font-heading text-base font-bold text-primary-foreground shadow-lg transition-all hover:scale-[1.02] hover:shadow-elevated disabled:cursor-not-allowed disabled:opacity-70"
+                        >
+                          <Send className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                          {submitState.status === 'loading' ? 'Submitting...' : 'Submit Application'}
+                        </button>
+                      </div>
+                    </form>
+                  </motion.div>
+                </div>
+              </div>
             </AnimatedSection>
           </div>
         </section>
