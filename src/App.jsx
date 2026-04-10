@@ -276,9 +276,9 @@ const Index = () => {
             <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="overflow-hidden border-t border-slate-200 bg-white/95 backdrop-blur md:hidden">
               <div className="flex flex-col gap-2 px-6 py-6">
                 {navLinks.map((link) => (
-                  <a key={link.label} href={link.href} onClick={closeMobile} className="rounded-lg px-4 py-3 text-lg font-medium text-foreground transition-colors hover:bg-accent">{link.label}</a>
+                  <a key={link.label} href={link.href} className="rounded-lg px-4 py-3 text-lg font-medium text-foreground transition-colors hover:bg-accent">{link.label}</a>
                 ))}
-                <a href="#contact" onClick={closeMobile} className="mt-3 rounded-full bg-gradient-to-br from-[#2fbfcb] via-blue-700 to-[#213875] px-6 py-3 text-center font-bold text-primary-foreground">Join Now <ArrowRight className="inline h-3 w-3 ml-1" /></a>
+                <a href="#contact" className="mt-3 rounded-full bg-gradient-to-br from-[#2fbfcb] via-blue-700 to-[#213875] px-6 py-3 text-center font-bold text-primary-foreground">Join Now <ArrowRight className="inline h-3 w-3 ml-1" /></a>
               </div>
             </motion.div>
           )}
