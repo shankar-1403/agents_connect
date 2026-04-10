@@ -783,6 +783,9 @@ const Index = () => {
             <p className="mt-3 max-w-xs text-sm leading-relaxed">
               India's trusted platform helping insurance agents increase earnings through better partnerships and dedicated support.
             </p>
+            <p className="max-w-xs text-sm leading-relaxed text-[#a07432] font-bold">Powered by SIPANY SS Insurance Brokers LLP</p>
+            <p className="max-w-xs text-sm leading-relaxed text-[#a07432] font-bold">(License No. 773 | LLPIN: AAT-4069)</p>
+            <p className="max-w-xs text-sm leading-relaxed text-[#a07432] font-bold">Validity: 21 Oct 2024 - 20 Oct 2027</p>
           </div>
           <div>
             <h4 className="font-heading text-sm font-bold uppercase tracking-[0.15em] text-primary-foreground/70">Contact Info</h4>
