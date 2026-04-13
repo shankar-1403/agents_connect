@@ -689,7 +689,7 @@ const Index = () => {
                 <div id="contact" className="mx-auto grid max-w-5xl gap-10 md:grid-cols-5 pt-10">
                   <motion.div variants={slideInLeft} className="space-y-5 md:col-span-2">
                     {[
-                      { label: 'Email', value: 'parvez@agentsconnect.in', Icon: Mail },
+                      { label: 'Email', value: 'contact@agentsconnect.in', Icon: Mail },
                       { label: 'Phone', value: '+91 77387 01551', Icon: Phone },
                       { label: 'Location', value: '169, 1st Floor Evershine Mall, Chincholi Bunder, Malad West Mumbai 400064', Icon: MapPin },
                     ].map((item) => (
@@ -790,8 +790,8 @@ const Index = () => {
           <div>
             <h4 className="font-heading text-sm font-bold uppercase tracking-[0.15em] text-primary-foreground/70">Contact Info</h4>
             <div className="mt-5 space-y-3">
-              <a href="mailto:parvez@agentsconnect.in" className="flex items-center gap-3 text-sm text-primary-foreground/40 transition-colors hover:text-primary-foreground/70">
-                <div className='p-2 bg-[#a07432] rounded-full'><Mail className="text-white" size={18} /></div> parvez@agentsconnect.in
+              <a href="mailto:contact@agentsconnect.in" className="flex items-center gap-3 text-sm text-primary-foreground/40 transition-colors hover:text-primary-foreground/70">
+                <div className='p-2 bg-[#a07432] rounded-full'><Mail className="text-white" size={18} /></div> contact@agentsconnect.in
               </a>
               <a href="tel:+917738701551" className="flex items-center gap-3 text-sm text-primary-foreground/40 transition-colors hover:text-primary-foreground/70">
                 <div className='p-2 bg-[#a07432] rounded-full'><Phone className="text-white" size={18} /></div> +91 77387 01551
