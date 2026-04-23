@@ -180,7 +180,7 @@ const Index = () => {
 
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
-  const heroY = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
+  const heroY = useTransform(scrollYProgress, [0, 1], ['0%', '5%']);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   useEffect(() => {
@@ -293,7 +293,7 @@ const Index = () => {
           <FloatingOrb className="h-[300px] w-[300px] bg-brand-blue-light/6 right-1/4 bottom-0 animate-blob-delay-2" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(31,162,255,0.14),transparent_45%),radial-gradient(circle_at_80%_30%,rgba(30,78,140,0.12),transparent_45%),radial-gradient(circle_at_50%_80%,rgba(201,162,39,0.10),transparent_45%)]" />
 
-          <motion.div style={{ y: heroY, opacity: heroOpacity }} className="relative mx-auto grid max-w-7xl items-center gap-16 px-5 md:grid-cols-2 md:px-8">
+          <div className="relative mx-auto grid max-w-7xl items-center gap-12 md:gap-16 px-5 md:grid-cols-2 md:px-8">
             <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}>
               <motion.span initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.3 }} className="inline-flex items-center gap-2 rounded-full border border-primary/15 bg-accent/80 px-4 py-1.5 text-sm font-semibold text-slate-800 backdrop-blur-sm">
                 <span className="h-2 w-2 rounded-full bg-brand-emerald animate-pulse" />
@@ -330,7 +330,7 @@ const Index = () => {
               <div className="absolute inset-0 rounded-full bg-primary/5 blur-3xl scale-75" />
               <img src={heroIllustration} alt="Insurance agents networking on digital platform" className="relative w-full max-w-xl drop-shadow-2xl motion-safe:animate-[float_4s_ease-in-out_infinite]" width={1024} height={1024} />
             </motion.div>
-          </motion.div>
+          </div>
         </section>
 
         {/* ── Stats Bar ── */}
@@ -350,7 +350,7 @@ const Index = () => {
         </section>
 
         {/* ── Problems ── */}
-        <section className="py-24 md:py-36 relative overflow-hidden">
+        <section className="py-16 md:py-36 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-background via-destructive/[0.02] to-background" />
           <div className="relative mx-auto max-w-7xl px-5 md:px-8">
             <AnimatedSection>
@@ -389,7 +389,7 @@ const Index = () => {
         </section>
 
         {/* ── Features / Solution ── */}
-        <section className="relative overflow-hidden py-24 md:py-36">
+        <section className="relative overflow-hidden py-16 md:py-36">
           <div className="absolute inset-0 bg-gradient-to-br from-[#213875] via-primary to-[#213875]" />
           <FloatingOrb className="h-[600px] w-[600px] bg-brand-gold/10 -right-40 top-20 animate-blob" />
           <FloatingOrb className="h-[400px] w-[400px] bg-brand-blue-light/10 -left-20 bottom-0 animate-blob-delay" />
@@ -424,7 +424,7 @@ const Index = () => {
         </section>
 
         {/* ── How it Works ── */}
-        <section id="how-it-works" className="relative py-24 md:py-36 overflow-hidden">
+        <section id="how-it-works" className="relative py-16 md:py-36 overflow-hidden">
           <div className="absolute inset-0 bg-accent/20" />
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full border border-primary/[0.04]" />
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[900px] w-[900px] rounded-full border border-primary/[0.03]" />
@@ -472,7 +472,7 @@ const Index = () => {
         </section>
 
         {/* ── Benefits ── */}
-        <section id="benefits" className="relative overflow-hidden py-24 md:py-36">
+        <section id="benefits" className="relative overflow-hidden py-16 md:py-36">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(31,162,255,0.14),transparent_45%),radial-gradient(circle_at_80%_30%,rgba(30,78,140,0.12),transparent_45%),radial-gradient(circle_at_50%_80%,rgba(201,162,39,0.10),transparent_45%)] opacity-40" />
           <FloatingOrb className="h-[500px] w-[500px] bg-primary/5 -right-40 top-20" />
           <div className="relative mx-auto max-w-7xl px-5 md:px-8">
@@ -541,7 +541,7 @@ const Index = () => {
         </section>
 
         {/* ── Who Can Join ── */}
-        <section className="relative py-24 md:py-36 overflow-hidden">
+        <section className="relative py-16 md:py-36 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-accent/30 via-background to-accent/30" />
           <div className="relative mx-auto max-w-7xl px-5 md:px-8">
             <AnimatedSection>
@@ -576,7 +576,7 @@ const Index = () => {
         </section>
 
         {/* ── Testimonials ── */}
-        <section className="relative py-24 md:py-36 overflow-hidden">
+        <section className="relative py-16 md:py-36 overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(31,162,255,0.14),transparent_45%),radial-gradient(circle_at_80%_30%,rgba(30,78,140,0.12),transparent_45%),radial-gradient(circle_at_50%_80%,rgba(201,162,39,0.10),transparent_45%)] opacity-30" />
           <FloatingOrb className="h-[400px] w-[400px] bg-brand-gold/5 -left-20 top-20" />
           <div className="relative mx-auto max-w-7xl px-5 md:px-8">
@@ -643,7 +643,7 @@ const Index = () => {
         </section>
 
         {/* ── CTA ── */}
-        <section className="relative overflow-hidden py-24 md:py-36">
+        <section className="relative overflow-hidden py-16 md:py-36">
           <div className="absolute inset-0 bg-gradient-to-br from-primary via-brand-blue to-[#213875]" />
           {/* <FloatingOrb className="h-[600px] w-[600px] bg-brand-gold/15 left-1/4 top-0 animate-blob" /> */}
           {/* <FloatingOrb className="h-[400px] w-[400px] bg-primary-foreground/5 right-0 bottom-0 animate-blob-delay" /> */}
@@ -680,7 +680,7 @@ const Index = () => {
         </section>
 
         {/* ── Contact ── */}
-        <section className="relative py-24 md:py-36 overflow-hidden">
+        <section className="relative py-16 md:py-36 overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(31,162,255,0.14),transparent_45%),radial-gradient(circle_at_80%_30%,rgba(30,78,140,0.12),transparent_45%),radial-gradient(circle_at_50%_80%,rgba(201,162,39,0.10),transparent_45%)] opacity-30" />
           <div className="relative mx-auto max-w-7xl px-5 md:px-8">
             <AnimatedSection>
@@ -725,7 +725,7 @@ const Index = () => {
                       <div className="relative mt-8 space-y-5">
                         {[
                           { type: 'text', placeholder: 'Your Full Name', name: 'name', icon: UserCheck },
-                          { type: 'tel', placeholder: 'Phone Number', name: 'phone', icon: Phone },
+                          { type: 'number', placeholder: 'Phone Number', name: 'phone', icon: Phone },
                           { type: 'text', placeholder: 'Your City', name: 'city', icon: MapPin },
                         ].map((field) => (
                           <div key={field.name} className="group relative">
